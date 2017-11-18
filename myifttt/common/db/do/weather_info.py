@@ -10,7 +10,7 @@ from sqlalchemy import Column, INT, DATE, Text, TIMESTAMP
 from myifttt.common.db.do.base_do import Base_do
 from myifttt.common.db.db import Base
 
-# 定义User对象:
+# 定义Weather_info对象:
 
 
 class Weather_info(Base, Base_do):
@@ -23,13 +23,14 @@ class Weather_info(Base, Base_do):
         Base_do
 
     Variables:
-        __tablename__ {str} -- [description]
         info_id {[type]} -- [description]
         city_alias {[type]} -- [description]
         city_id {[type]} -- [description]
         city_name {[type]} -- [description]
-        temperature_high {[type]} -- [description]
-        temperature_low {[type]} -- [description]
+        today_temperature_high {[type]} -- [description]
+        today_temperature_low {[type]} -- [description]
+        tomorrow_temperature_high {[type]} -- [description]
+        tomorrow_temperature_low {[type]} -- [description]
         text_day {[type]} -- [description]
         text_night {[type]} -- [description]
         info_date {[type]} -- [description]
@@ -41,12 +42,14 @@ class Weather_info(Base, Base_do):
     __tablename__ = 'weather_info'
 
     # 表的结构:
-    info_id = Column("id", INT(), primary_key=True)
+    info_id = Column("id", INT, primary_key=True)
     city_alias = Column("city_alias", Text)
     city_id = Column("city_id", Text)
     city_name = Column("city_name", Text)
-    temperature_high = Column("temperature_high", INT)
-    temperature_low = Column("temperature_low", INT)
+    today_temperature_high = Column("today_temperature_high", INT)
+    today_temperature_low = Column("today_temperature_low", INT)
+    tomorrow_temperature_high = Column("tomorrow_temperature_high", INT)
+    tomorrow_temperature_low = Column("tomorrow_temperature_low", INT)
     text_day = Column("text_day", Text)
     text_night = Column("text_night", Text)
     info_date = Column("info_date", DATE)

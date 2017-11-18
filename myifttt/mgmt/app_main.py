@@ -19,7 +19,12 @@ def run():
     用于真正运行业务代码的方法
     """
     scheduler = Scheduler()
-    plugin_utils.get_plugin_modules()
+    # 加载插件模块
+    module_list = plugin_utils.get_plugin_modules()
+    for _module in module_list:
+        scheduler.add_module(_module)
+
+    scheduler.run()
 
 
 def start_procs():

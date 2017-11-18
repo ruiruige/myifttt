@@ -9,7 +9,6 @@
 from oslo_config import cfg
 
 from myifttt.common.config import global_config
-from myifttt.plugins import weather
 
 opts = [
     cfg.FloatOpt('main_thread_check_interval', default=1.0)
@@ -48,4 +47,5 @@ class Scheduler(object):
 
         [description]
         """
-        weather.get_weather()
+        for _module in self.module_list:
+            _module.execute_routine()

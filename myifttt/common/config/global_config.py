@@ -44,15 +44,26 @@ def init_global_const():
 init_global_const()
 
 
-def get_conf_from_file(name=None, opts=None):
+def get_plugin_conf_abs_fp(name=None):
+    """根据插件名称，返回插件配置文件绝对路径
+
+    [description]
+
+    Keyword Arguments:
+        name {[type]} -- [description] (default: {None})
+    """
+    file_name = "%s.conf" % name
+    return os.path.join(DEFAULT_CONF_DIR, "plugins", file_name)
+
+
+def get_plugin_conf_from_file(name=None, opts=None):
     """
     解析配置文件，并且返回一个oslo_config.cfg.CONF对象
     对象默认是DEFAULT section的
     """
     CONF = cfg.CONF
     CONF.register_opts(opts)
-    CONF(default_config_files=[os.path.join(
-        DEFAULT_CONF_DIR, "plugins", name), ])
+    CONF(default_config_files=[get_plugin_conf_abs_fp(name=name), ])
     return CONF
 
 
