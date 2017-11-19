@@ -99,7 +99,8 @@ def send_warning_text(warning_text=None, method=None, task_user_name=None):
                          from_user=CONF.EMAIL.email_user,
                          to_user=user.email,
                          body=warning_text,
-                         from_nickname="天气提醒")
+                         from_nickname="天气提醒",
+                         to_nickname=user.nickname)
     elif method == "SMS":
         send_SMS(None, None, None,
                  None, None)
