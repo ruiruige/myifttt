@@ -83,7 +83,7 @@ class Weather_tasks(Base, Base_do):
                         cast(Push_log.push_datetime, DATE) == today_str).all()
 
             pushed_log_num = len(pushed_log_list)
-            LOG.debug("task_id: %d, pushed_log_list lenght is %d", self.task_id,
+            LOG.debug("task_id: %d, pushed_log_list length is %d", self.task_id,
                       pushed_log_num)
 
             if pushed_log_num > 0:
