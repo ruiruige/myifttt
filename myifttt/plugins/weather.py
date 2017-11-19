@@ -94,7 +94,7 @@ def send_warning_text(warning_text=None, method=None, task_user_name=None):
         send_normal_mail(user=CONF.EMAIL.email_user,
                          password=CONF.EMAIL.email_password,
                          port=CONF.EMAIL.smtp_port,
-                         host=CONF.MAIL.smtp_host,
+                         host=CONF.EMAIL.smtp_host,
                          subject="天气提醒",
                          from_user=CONF.EMAIL.email_user,
                          to_user=user.email,
