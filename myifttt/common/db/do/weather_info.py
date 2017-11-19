@@ -11,6 +11,7 @@
 import datetime
 
 from sqlalchemy import Column, INT, DATE, Text, TIMESTAMP
+from sqlalchemy import func
 from myifttt.common.db.do.base_do import Base_do
 from myifttt.common.db.db import Base
 
@@ -56,7 +57,7 @@ class Weather_info(Base, Base_do):
     tomorrow_temperature_low = Column("tomorrow_temperature_low", INT)
     text_day = Column("text_day", Text)
     text_night = Column("text_night", Text)
-    info_date = Column("info_date", DATE)
+    info_date = Column("info_date", DATE, default=func.current_date)
     created_at = Column("created_at", TIMESTAMP,
                         default=datetime.datetime.now())
     updated_at = Column("updated_at", TIMESTAMP,
