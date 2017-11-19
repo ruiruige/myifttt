@@ -7,6 +7,8 @@
 所有的推送记录都在这里
 """
 
+import datetime
+
 from sqlalchemy import Column, INT, Text, TIMESTAMP
 from myifttt.common.db.do.base_do import Base_do
 from myifttt.common.db.db import Base
@@ -40,7 +42,8 @@ class Push_log(Base, Base_do):
     # 表的结构:
     log_id = Column("id", INT, primary_key=True)
     push_method = Column("push_method", Text)
-    push_datetime = Column("push_datetime", TIMESTAMP)
+    push_datetime = Column("push_datetime", TIMESTAMP,
+                           default=datetime.datetime.now())
     push_user = Column("push_user", Text)
     push_plugin = Column("push_plugin", Text)
     plugin_push_reason = Column("plugin_push_reason", Text)
