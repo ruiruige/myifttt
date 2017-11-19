@@ -1,3 +1,4 @@
 *.pyc
 *.log
 db.conf
+myifttt/conf/common/plugins/weather.conf
