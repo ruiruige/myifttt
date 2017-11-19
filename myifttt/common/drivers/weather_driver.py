@@ -201,6 +201,9 @@ class Weather_driver(object):
         """推送天气告警之前要执行的函数
 
         主要分为保存天气日志和保存推送记录
+        以后可以改成每查询一次API就记录一次
+        不用等到推送时候再记录
+        包括查询结果不符合推送条件的，也可以记录
         """
         # 保存天气日志
         info = weather_info.Weather_info()
