@@ -51,7 +51,7 @@ def send_normal_mail(user=None, password=None, port=None,
     message['Subject'] = Header(subject, 'utf-8')
 
     try:
-        smtpObj = smtplib.SMTP()
+        smtpObj = smtplib.SMTP_SSL()
         smtpObj.connect(host, port)
         smtpObj.login(user, password)
         smtpObj.sendmail(from_user, receivers, message.as_string())
