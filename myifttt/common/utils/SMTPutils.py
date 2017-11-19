@@ -13,6 +13,10 @@ from email.mime.text import MIMEText
 from email.header import Header
 import traceback
 
+from myifttt.common.log.log import getLogger
+
+LOG = getLogger(__name__)
+
 
 def send_normal_mail(user=None, password=None, port=None,
                      host=None, subject=None, from_user=None,
@@ -21,6 +25,8 @@ def send_normal_mail(user=None, password=None, port=None,
 
     [description]
     """
+    LOG.info("entering func send_normal_mail")
+
     sender = 'from@runoob.com'
     # 接收人列表
     receivers = [to_user, ]
