@@ -11,6 +11,7 @@
 import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
+from email.utils import make_msgid, formatdate
 import traceback
 
 from myifttt.common.log.log import getLogger
@@ -45,8 +46,12 @@ def send_normal_mail(user=None, password=None, port=None,
 
     # 正文 subtype 字符集
     message = MIMEText(body, 'plain', 'utf-8')
-    message['From'] = Header("%s <%s>" % (from_nickname, from_user), 'utf-8')
-    message['To'] = Header("%s <%s>" % (to_nickname, to_user), 'utf-8')
+    message['From'] = '%s <%s>' % (
+        Header(from_nickname.decode('utf-8')).encode(), from_user)
+    message['To'] = '%s <%s>' % (
+        Header(to_nickname.decode('utf-8')).encode(), to_user)
+    message['Message-id'] = make_msgid()
+    message['Date'] = formatdate()
 
     message['Subject'] = Header(subject, 'utf-8')
 
