@@ -182,8 +182,8 @@ class Weather_driver(object):
         """
         text = """尊敬的%s, 今天最高气温%d, 最低气温%d, 明日最高气温%d, 最低气温%d, 明日早晨天气%s,
         明日夜间天气%s。请注意天气，安排出行"""
-        text_template = ("尊敬的%s, 今天最高气温%d, 最低气温%d, 明日最高气温%d,"
-                         " 最低气温%d, 明日早晨天气%s,明日夜间天气%s。请注意天气，安排出行")
+        text_template = ("你好，%s！ 今日最高温度%d摄氏度(默认单位摄氏度，下同), 最低温度%d, 明日最高温度%d,"
+                         " 最低温度%d, 明日白天天气%s, 夜间天气%s。请关注天气变动，合理安排出行计划")
         text = text_template % (
             self.task.user,
             self.get_today_high(),
@@ -197,8 +197,8 @@ class Weather_driver(object):
         LOG.info(text)
         return text
 
-    def pre_push_warning_text(self):
-        """推送天气告警之前要执行的函数
+    def post_push_warning_text(self):
+        """推送天气告警之后要执行的函数
 
         主要分为保存天气日志和保存推送记录
         以后可以改成每查询一次API就记录一次
