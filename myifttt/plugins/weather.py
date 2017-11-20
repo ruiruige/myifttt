@@ -16,6 +16,7 @@ from myifttt.common.utils.SMTPutils import send_normal_mail
 from myifttt.common.config import global_config
 from myifttt.common.db.do import users
 from myifttt.common.log.log import getLogger
+from myifttt.common.utils import datetime_utils
 
 LOG = getLogger(__name__)
 
@@ -67,12 +68,13 @@ def run_job(task):
     if w_driver.is_tomorrow_weather_bad():
         LOG.info(
             "processing task [id: %d], tomorrow is a bad day", task.task_id)
-        # 推送之前要执行的函数，主要是生成天气和推送记录
-        w_driver.pre_push_warning_text()
         # 推送
         warning_text = w_driver.generate_warning_text()
         send_warning_text(warning_text=warning_text,
                           method=task.push_method, task_user_name=task.user)
+
+        # 推送之后要执行的函数，主要是生成天气和推送记录
+        w_driver.post_push_warning_text()
     else:
         LOG.info(
             "processing task [id: %d], tomorrow is NOT a bad day", task.task_id)
@@ -95,7 +97,7 @@ def send_warning_text(warning_text=None, method=None, task_user_name=None):
                          password=CONF.EMAIL.email_password,
                          port=CONF.EMAIL.smtp_port,
                          host=CONF.EMAIL.smtp_host,
-                         subject="天气提醒",
+                         subject="%s 天气提醒" % datetime_utils.get_today_day_str(),
                          from_user=CONF.EMAIL.email_user,
                          to_user=user.email,
                          body=warning_text,
