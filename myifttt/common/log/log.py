@@ -7,6 +7,7 @@
 [description]
 """
 
+import os
 import logging as ori_logging
 
 from oslo_config import cfg
@@ -33,8 +34,8 @@ CONF.register_opts(extend_opts, extend_group)
 
 
 logging.register_options(CONF)
-CONF(default_config_files=[
-    "/root/code/test/myifttt/conf/common/log/log.conf", ])
+CONF(default_config_files=[os.path.join(os.path.dirname(os.path.abspath(
+    __file__)), "..", "..", "conf", "common", "log", "log.conf"), ])
 logging.setup(CONF, DOMAIN)
 
 

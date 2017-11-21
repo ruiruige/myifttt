@@ -7,11 +7,12 @@
 """
 
 from oslo_config import cfg
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 from myifttt.common.config import global_config
 
 opts = [
-    cfg.FloatOpt('main_thread_check_interval', default=1.0)
+    cfg.IntOpt('main_thread_check_interval', default=5)
 ]
 
 CONF = cfg.CONF
@@ -47,5 +48,10 @@ class Scheduler(object):
 
         [description]
         """
+        sched = BlockingScheduler()
+
         for _module in self.module_list:
-            _module.execute_routine()
+            sched.add_job(_module.execute_routine, 'interval',
+                          seconds=CONF.main_thread_check_interval)
+
+        sched.start()
