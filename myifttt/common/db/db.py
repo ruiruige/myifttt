@@ -35,7 +35,7 @@ db_opts = [
 ]
 
 
-CONF = cfg.CONF
+CONF = cfg.ConfigOpts()
 # 注册默认组的配置项
 CONF.register_opts(db_opts)
 

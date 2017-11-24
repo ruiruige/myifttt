@@ -73,6 +73,9 @@ class Weather_driver(object):
         }
         resp = httputils.http_get(url=self.url, params=params)
         if resp.status_code not in [200]:
+            LOG.error("API返回非200状态码: %d, text: %s",
+                      resp.status_code, resp.text)
+
             raise Exception("API返回非200状态码")
 
         resp_json = resp.json()

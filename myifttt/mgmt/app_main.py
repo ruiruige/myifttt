@@ -10,7 +10,7 @@ app入口文件
 import os
 import traceback
 
-
+from myifttt.mgmt.scheduler import Scheduler
 from myifttt.common.utils import plugin_utils
 
 
@@ -18,7 +18,6 @@ def run():
     """
     用于真正运行业务代码的方法
     """
-    from myifttt.mgmt.scheduler import Scheduler
 
     scheduler = Scheduler()
     # 加载插件模块

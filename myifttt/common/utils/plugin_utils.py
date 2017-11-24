@@ -19,6 +19,7 @@ def get_plugin_modules():
     从对应目录获取文件名，依次导入模块
     最后返回模块的列表
     """
+
     plugins_path = plugins.__path__[0]
 
     path_list = os.listdir(plugins_path)

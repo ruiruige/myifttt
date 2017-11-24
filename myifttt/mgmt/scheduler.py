@@ -15,7 +15,8 @@ opts = [
     cfg.IntOpt('main_thread_check_interval', default=5)
 ]
 
-CONF = cfg.CONF
+# 如果用类变量，那么在fork之前，就会执行，导致fork进程和原进程d都持有文件
+CONF = cfg.ConfigOpts()
 CONF.register_opts(opts)
 CONF(default_config_files=[global_config.DEFAULT_CONF_ABS_FP, ])
 

@@ -38,7 +38,7 @@ email_opts = [
                help='email host of weather account.')
 ]
 
-CONF = cfg.CONF
+CONF = cfg.ConfigOpts()
 CONF.register_group(email_group)
 CONF.register_opts(email_opts, email_group)
 CONF(default_config_files=[

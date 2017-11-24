@@ -61,7 +61,7 @@ def get_plugin_conf_from_file(name=None, opts=None):
     解析配置文件，并且返回一个oslo_config.cfg.CONF对象
     对象默认是DEFAULT section的
     """
-    CONF = cfg.CONF
+    CONF = cfg.ConfigOpts()
     CONF.register_opts(opts)
     CONF(default_config_files=[get_plugin_conf_abs_fp(name=name), ])
     return CONF
