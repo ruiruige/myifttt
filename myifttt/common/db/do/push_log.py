@@ -10,6 +10,7 @@
 import datetime
 
 from sqlalchemy import Column, INT, Text, TIMESTAMP
+from sqlalchemy import func
 from myifttt.common.db.do.base_do import Base_do
 from myifttt.common.db.db import Base
 
@@ -43,7 +44,7 @@ class Push_log(Base, Base_do):
     log_id = Column("id", INT, primary_key=True)
     push_method = Column("push_method", Text)
     push_datetime = Column("push_datetime", TIMESTAMP,
-                           default=datetime.datetime.now())
+                           default=func.now())
     push_user = Column("push_user", Text)
     push_plugin = Column("push_plugin", Text)
     plugin_push_reason = Column("plugin_push_reason", Text)

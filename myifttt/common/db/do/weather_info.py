@@ -59,6 +59,6 @@ class Weather_info(Base, Base_do):
     text_night = Column("text_night", Text)
     info_date = Column("info_date", DATE, default=func.current_date())
     created_at = Column("created_at", TIMESTAMP,
-                        default=datetime.datetime.now())
+                        default=func.now())
     updated_at = Column("updated_at", TIMESTAMP,
-                        default=datetime.datetime.now())
+                        default=func.now())
