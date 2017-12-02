@@ -31,7 +31,6 @@ class Weather_tasks(Base, Base_do):
         Base_do
 
     Variables:
-        __tablename__ {str} -- [description]
         task_id {[type]} -- [description]
         user {[type]} -- [description]
         city_id {[type]} -- [description]
@@ -41,6 +40,8 @@ class Weather_tasks(Base, Base_do):
         le_low_delta_watermark {[type]} -- [description]
         push_method {[type]} -- [description]
         check_hour_of_day {[type]} -- [description]
+        low_threshold {[type]} -- [description]
+        high_threshold {[type]} -- [description]
     """
 
     # 表的名字:
@@ -56,6 +57,8 @@ class Weather_tasks(Base, Base_do):
     le_low_delta_watermark = Column("le_low_delta_watermark", INT)
     push_method = Column("push_method", Text)
     check_hour_of_day = Column("check_hour_of_day", INT)
+    low_threshold = Column("low_threshold", INT)
+    high_threshold = Column("high_threshold", INT)
 
     def time_to_run_task(self):
         """查看是否到了执行任务的时间
@@ -74,7 +77,7 @@ class Weather_tasks(Base, Base_do):
         凡是推送完毕才叫执行完
         """
         try:
-            today_str = datetime_utils.get_today_day_str()
+            today_str = datetime_utils.get_today_date_str()
 
             session = db.get_session()
             pushed_log_list = session.query(Push_log).filter(
