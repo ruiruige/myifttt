@@ -34,8 +34,9 @@ def get_plugin_modules():
 
     module_list = []
     for path in path_list:
-        file_name = os.path.dirname(path)
-        module_name = file_name[file_name.rfind(".") + 1:]
+        file_name = path
+        module_name = file_name[file_name.rfind("/") + 1:]
+        module_name = module_name.split(".")[0]
         # 从文件名加载模块
         _module = imp.load_source(module_name, path)
         module_list.append(_module)
