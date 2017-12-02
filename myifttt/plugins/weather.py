@@ -97,7 +97,7 @@ def send_warning_text(warning_text=None, method=None, task_user_name=None):
                          password=CONF.EMAIL.email_password,
                          port=CONF.EMAIL.smtp_port,
                          host=CONF.EMAIL.smtp_host,
-                         subject="%s 天气提醒" % datetime_utils.get_today_day_str(),
+                         subject="%s 天气提醒" % datetime_utils.get_today_date_str(),
                          from_user=CONF.EMAIL.email_user,
                          to_user=user.email,
                          body=warning_text,
