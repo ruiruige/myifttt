@@ -172,8 +172,12 @@ class Weather_driver(object):
         # 第二天低温小于第一天
         elif today_low - tomorrow_low >= self.task.le_low_delta_watermark:
             return True
-        elif self.get_tomorrow_day_text in Weather_driver.bad_text_list or \
-                self.get_tomorrow_night_text in Weather_driver.bad_text_list:
+        elif self.get_tomorrow_day_text() in Weather_driver.bad_text_list or \
+                self.get_tomorrow_night_text() in Weather_driver.bad_text_list:
+            return True
+        elif tomorrow_high >= self.task.high_threshold:
+            return True
+        elif tomorrow_low <= self.task.low_threshold:
             return True
 
         return False
