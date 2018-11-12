@@ -9,7 +9,7 @@
 
 from oslo_config import cfg
 
-from myifttt.common.db.do import weather_tasks
+from myifttt.common.db.do.task.weather_tasks import Weather_tasks
 from myifttt.common.drivers import weather_driver
 from myifttt.common.utils.SMSutils import send_SMS
 from myifttt.common.utils.SMTPutils import send_normal_mail
@@ -53,7 +53,9 @@ def get_all_weather_tasks():
     Returns:
         [type] -- [description]
     """
-    task_list = weather_tasks.get_all_tasks()
+    LOG.info("getting all tasks")
+    task_list = Weather_tasks.get_all_tasks()
+    LOG.info("task list length is %d", len(task_list))
     return task_list
 
 

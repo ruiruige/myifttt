@@ -8,8 +8,6 @@
 """
 
 
-import datetime
-
 from sqlalchemy import Column, INT, DATE, Text, TIMESTAMP
 from sqlalchemy import func
 from myifttt.common.db.do.base_do import Base_do

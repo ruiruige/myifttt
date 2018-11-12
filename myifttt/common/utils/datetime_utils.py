@@ -21,6 +21,22 @@ def get_today_date_str():
     return time.strftime("%Y-%m-%d", time.localtime())
 
 
+def datetime_to_date_str(dt):
+    """把datetime格式转为日期字符串
+
+    [description]
+
+    Arguments:
+        dt {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
+    datetime_str = str(dt)
+    segments = datetime_str.split(" ")
+    return segments[0]
+
+
 def date_str_to_int_formatted(date_str):
     """把日期字符串转成数字格式的
 
@@ -49,3 +65,18 @@ def int_formatted_date_str_to_standard(date_str):
         [type] -- [description]
     """
     return date_str[:4] + "-" + date_str[4:6] + "-" + date_str[6:]
+
+
+def split_date_str(date_str):
+    """将日期字符串分割成年月日三个字符串
+
+    [description]
+
+    Arguments:
+        date_str {[type]} -- [description]
+
+    Returns:
+        [type] -- [description]
+    """
+    segments = date_str.split("-")
+    return segments[0], segments[1], segments[2]
